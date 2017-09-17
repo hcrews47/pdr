@@ -1,0 +1,5 @@
+Holt Crews, jhc6we, 9/14/17 difficulties.txt
+
+Difficulties:
+
+For my stack class I basically copied what I had for my Linked List with a few modifications such as making it singly linked as opposed to doubly linked. One problem I had was when I was trying to compile my StackNode and Stack files, I was using the std namespace so that I could use NULL for my pointers, however I did not include any other standard libraries such as <iostream> in my header files. This caused an error when compiling. Also, for my postfixCalculator header file, I tried to make one of the private variables the stack class instead of making it a pointer to the stack class. This also caused some errors when compiling, saying that it couldn't set a variable equal to a stack class. After this I had to go through my entire postfixCalculator.cpp file and dereference all instances of the stack. Other than that it went well.

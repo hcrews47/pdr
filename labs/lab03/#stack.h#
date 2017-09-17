@@ -1,0 +1,17 @@
+// Holt Crews, jhc6we, 9/15/17, stack.h
+
+#include "StackNode.h"
+
+// assumes a stack of ints stored in StackNodes
+class stack {
+  public:
+    stack();                // constructor    
+    ~stack();               // destructor
+    bool isEmpty() const;   // checks for empty
+    void push(int value);   // push value onto stack
+    void pop();             // pop top of stack
+    int top() const;        // returns topOfStack
+
+  private:
+    StackNode *head;        // like a ListNode...
+};

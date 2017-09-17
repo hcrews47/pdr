@@ -1,0 +1,9 @@
+Holt Crews, jhc6we, 08/30/17, postlab1.question.txt
+
+Questions:
+
+1. I don't think we have gotten to this yet but what does "->" do? Is it the same as l.size() in Java?
+
+2. I also still don't understand why we only need two files here and why you can define the functions in the header.
+
+3. Why don't you need the usual #ifndef, etc. stuff in the header file?
