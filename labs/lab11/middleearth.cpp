@@ -5,7 +5,10 @@
 #include <math.h>
 #include <time.h>
 
-// The list of all the place names that we'll be using
+//! An array of strings
+/*!
+ The list of all the place names that we'll be using
+*/
 string all_city_names[] = {
     // human towns, cities and strongholds
     "Bree",             // a human and hobbit town between the Shire and Rivendell
@@ -59,6 +62,16 @@ string all_city_names[] = {
 };
 
 // Iluvatar, the creator of Middle-Earth
+
+/** @brief creates a representation of Middle-Earth
+ * 
+ * Cities are randomly placed into a 2D array to represent distances 
+ * @return An object of class MiddleEarth
+ * @param xsize The size of the 2D distance array in the x direction
+ * @param ysize The size of the 2D distance array in the y direction
+ * @param num_cities The number of cities that will be used in this creation of Middle-Earth
+ * @param seed Makes the creation reproducible yet still random
+ */
 MiddleEarth::MiddleEarth (int xsize, int ysize, int num_cities, int seed) {
     // set up the random number seed
     srand( (seed==-1) ? time(NULL) : seed );
@@ -131,6 +144,13 @@ void MiddleEarth::printTable() {
 // This method returns the distance between the two passed cities.  If
 // we assume that the hash table (i.e. the map) is O(1), then this
 // method call is also O(1)
+/** @brief Returns the distance between two cities
+ * 
+ * Uses the 2-D distance array to calculate the distance between two cities 
+ * @return A floating point value of distance
+ * @param city1 The first of the two cities
+ * @param city2 The second of the two cities
+ */
 float MiddleEarth::getDistance (string city1, string city2) {
     return distances[indices[city1]*cities.size()+indices[city2]];
 }
@@ -139,6 +159,13 @@ float MiddleEarth::getDistance (string city1, string city2) {
 // original start point as well as the end point.  The number of
 // cities passed in does not include this start/end point (so there
 // will be length+1 entries in the returned vector).
+
+/** @brief Returns the list of cities to travel to.
+ * 
+ * The first city is the original start point as well as the end point. The number of cities passed in does not include this start/end point (so there will be length+1 entries in the returned vector.
+ * @return A vector of strings of the names of the cities produced by this itinerary generator. 
+ * @param length How many cities are on the itinerary.
+ */
 vector<string> MiddleEarth::getItinerary (unsigned int length) {
     length++; // to account for the start point
     // check parameter

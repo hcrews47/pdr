@@ -1,3 +1,4 @@
+// Holt Crews, jhc6we, 10/16/17, getWordInGrid.cpp
 /** This file defines and demonstrates two necessary components for
  * the hash table lab for CS 2150.  The first is the use of the
  * getWordInGrid() function, which is used for retrieving a word in a
@@ -30,7 +31,7 @@ char* getWordInGrid (int startRow, int startCol, int dir, int len,
 
 /** The main() function shows how to call both the readInGrid()
  * function as well as the getWordInGrid() function.
- */
+ *
 int main() {
     // to hold the number of rows and cols in the input file
     int rows, cols;
@@ -48,7 +49,7 @@ int main() {
         cout << i << ": " << getWordInGrid(2,2,i,10,rows,cols) << endl;
     // All done!
     return 0;
-}
+    }*/
 
 
 
@@ -76,11 +77,11 @@ bool readInGrid (string filename, int &rows, int &cols) {
         return false;
     // the first line is the number of rows: read it in
     file >> rows;
-    cout << "There are " << rows << " rows." << endl;
+    //cout << "There are " << rows << " rows." << endl;
     getline (file,line); // eats up the return at the end of the line
     // the second line is the number of cols: read it in and parse it
     file >> cols;
-    cout << "There are " << cols << " cols." << endl;
+    //cout << "There are " << cols << " cols." << endl;
     getline (file,line); // eats up the return at the end of the line
     // the third and last line is the data: read it in
     getline (file,line);
@@ -93,9 +94,9 @@ bool readInGrid (string filename, int &rows, int &cols) {
     for ( int r = 0; r < rows; r++ ) {
         for ( int c = 0; c < cols; c++ ) {
             grid[r][c] = line[pos++];
-            cout << grid[r][c];
+            //cout << grid[r][c];
         }
-        cout << endl;
+        //cout << endl;
     }
     // return success!
     return true;
@@ -147,8 +148,13 @@ char* getWordInGrid (int startRow, int startCol, int dir, int len,
     // iterate once for each character in the output
     for ( int i = 0; i < len; i++ ) {
         // if the current row or column is out of bounds, then break
-        if ( (c >= numCols) || (r >= numRows) || (r < 0) || (c < 0) )
-            break;
+      if ( (c >= numCols) || (r >= numRows) || (r < 0) || (c < 0) ){
+	output[0] = grid[1][1]; // This section makes it so that if out of 
+	output[1] = grid[1][1]; // bounds, a string that is not a word is 
+	output[2] = grid[1][1]; // returned
+	output[3] = 0;
+	   return output;
+      }
         // set the next character in the output array to the next letter
         // in the grid
         output[pos++] = grid[r][c];

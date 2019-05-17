@@ -1,0 +1,32 @@
+C00A 000		jmp	start	skip over variables
+0000 001	a	dw 	0	int a
+0000 002	b	dw	0	int b
+0000 003	c 	dw 	0	int c
+0000 004	x	dw	0	a+b+c
+0000 005				leave space for more stuff
+0000 006				""
+0000 007				""
+0000 008				""	
+0000 009				""
+1000 00A	loop	readH		read a
+4001 00B		store	a
+B000 00C		nop		just in case I mess up
+1000 00D		readH		read b
+B000 00E		nop		just in case I mess up	
+4002 00F		store	b
+B000 010		nop		just in case I mess up	
+1000 011		readH		read c
+B000 012		nop		just in case I mess up
+4003 013		store 	c
+3001 014		load	a	load a to accumulator
+5002 015		add	b	add b to accumulator
+5003 016		add 	c 	add c to accumulator
+D019 017		jmpe	loop	go to loop if accumulator=0
+C00A 018		jmp 	loop	go to loop if accumulator!=0
+3001 019	xit	load	a	load a to print
+1800 01A 		printH	a	print a
+3002 01B		load 	b 	load b to print
+1800 01C		printH 	b 	print b
+3003 01D 		load 	c	load c to print
+1800 01E		printH	c	print c
+0000 01F		halt

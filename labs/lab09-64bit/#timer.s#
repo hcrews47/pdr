@@ -1,0 +1,555 @@
+	.text
+	.intel_syntax noprefix
+	.file	"timer.cpp"
+	.globl	_ZN5timerC2ERS_	;-O2
+	.align	16, 0x90
+	.type	_ZN5timerC2ERS_,@function
+_ZN5timerC2ERS_:                        # @_ZN5timerC2ERS_
+	.cfi_startproc
+# BB#0:
+	mov	al, byte ptr [rsi + 32]
+	mov	byte ptr [rdi + 32], al
+	movups	xmm0, xmmword ptr [rsi]
+	movups	xmmword ptr [rdi], xmm0
+	movups	xmm0, xmmword ptr [rsi + 16]
+	movups	xmmword ptr [rdi + 16], xmm0
+	ret
+.Lfunc_end0:
+	.size	_ZN5timerC2ERS_, .Lfunc_end0-_ZN5timerC2ERS_
+	.cfi_endproc
+
+	.globl	_ZN5timer5startEv
+	.align	16, 0x90
+	.type	_ZN5timer5startEv,@function
+_ZN5timer5startEv:                      # @_ZN5timer5startEv
+	.cfi_startproc
+# BB#0:
+	push	rbx
+.Ltmp0:
+	.cfi_def_cfa_offset 16
+.Ltmp1:
+	.cfi_offset rbx, -16
+	mov	ebx, 1
+	cmp	byte ptr [rdi + 32], 0
+	jne	.LBB1_2
+# BB#1:
+	mov	byte ptr [rdi + 32], 1
+	xor	ebx, ebx
+	xor	esi, esi
+	call	gettimeofday
+.LBB1_2:
+	mov	eax, ebx
+	pop	rbx
+	ret
+.Lfunc_end1:
+	.size	_ZN5timer5startEv, .Lfunc_end1-_ZN5timer5startEv
+	.cfi_endproc
+
+	.globl	_ZN5timer4stopEv
+	.align	16, 0x90
+	.type	_ZN5timer4stopEv,@function
+_ZN5timer4stopEv:                       # @_ZN5timer4stopEv
+	.cfi_startproc
+# BB#0:
+	push	rbx
+.Ltmp2:
+	.cfi_def_cfa_offset 16
+.Ltmp3:
+	.cfi_offset rbx, -16
+	mov	ebx, 1
+	cmp	byte ptr [rdi + 32], 0
+	je	.LBB2_2
+# BB#1:
+	mov	byte ptr [rdi + 32], 0
+	add	rdi, 16
+	xor	ebx, ebx
+	xor	esi, esi
+	call	gettimeofday
+.LBB2_2:
+	mov	eax, ebx
+	pop	rbx
+	ret
+.Lfunc_end2:
+	.size	_ZN5timer4stopEv, .Lfunc_end2-_ZN5timer4stopEv
+	.cfi_endproc
+
+	.globl	_ZN5timer5printERSo
+	.align	16, 0x90
+	.type	_ZN5timer5printERSo,@function
+_ZN5timer5printERSo:                    # @_ZN5timer5printERSo
+.Lfunc_begin0:
+	.cfi_startproc
+	.cfi_personality 3, __gxx_personality_v0
+	.cfi_lsda 3, .Lexception0
+# BB#0:
+	push	rbx
+.Ltmp7:
+	.cfi_def_cfa_offset 16
+	sub	rsp, 32
+.Ltmp8:
+	.cfi_def_cfa_offset 48
+.Ltmp9:
+	.cfi_offset rbx, -16
+	mov	rbx, rsi
+	mov	rax, rdi
+	lea	rdi, [rsp]
+	mov	rsi, rax
+	call	_ZN5timer8toStringB5cxx11Ev
+	mov	rsi, qword ptr [rsp]
+	mov	rdx, qword ptr [rsp + 8]
+.Ltmp4:
+	mov	rdi, rbx
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	mov	rbx, rax
+.Ltmp5:
+# BB#1:                                 # %_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE.exit
+	mov	rdi, qword ptr [rsp]
+	lea	rax, [rsp + 16]
+	cmp	rdi, rax
+	je	.LBB3_3
+# BB#2:
+	call	_ZdlPv
+.LBB3_3:                                # %_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED2Ev.exit
+	mov	rax, rbx
+	add	rsp, 32
+	pop	rbx
+	ret
+.LBB3_4:
+.Ltmp6:
+	mov	rbx, rax
+	mov	rdi, qword ptr [rsp]
+	lea	rax, [rsp + 16]
+	cmp	rdi, rax
+	je	.LBB3_6
+# BB#5:
+	call	_ZdlPv
+.LBB3_6:                                # %_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED2Ev.exit1
+	mov	rdi, rbx
+	call	_Unwind_Resume
+.Lfunc_end3:
+	.size	_ZN5timer5printERSo, .Lfunc_end3-_ZN5timer5printERSo
+	.cfi_endproc
+	.section	.gcc_except_table,"a",@progbits
+	.align	4
+GCC_except_table3:
+.Lexception0:
+	.byte	255                     # @LPStart Encoding = omit
+	.byte	3                       # @TType Encoding = udata4
+	.byte	41                      # @TType base offset
+	.byte	3                       # Call site Encoding = udata4
+	.byte	39                      # Call site table length
+	.long	.Lfunc_begin0-.Lfunc_begin0 # >> Call Site 1 <<
+	.long	.Ltmp4-.Lfunc_begin0    #   Call between .Lfunc_begin0 and .Ltmp4
+	.long	0                       #     has no landing pad
+	.byte	0                       #   On action: cleanup
+	.long	.Ltmp4-.Lfunc_begin0    # >> Call Site 2 <<
+	.long	.Ltmp5-.Ltmp4           #   Call between .Ltmp4 and .Ltmp5
+	.long	.Ltmp6-.Lfunc_begin0    #     jumps to .Ltmp6
+	.byte	0                       #   On action: cleanup
+	.long	.Ltmp5-.Lfunc_begin0    # >> Call Site 3 <<
+	.long	.Lfunc_end3-.Ltmp5      #   Call between .Ltmp5 and .Lfunc_end3
+	.long	0                       #     has no landing pad
+	.byte	0                       #   On action: cleanup
+	.align	4
+
+	.text
+	.globl	_ZN5timer8toStringB5cxx11Ev
+	.align	16, 0x90
+	.type	_ZN5timer8toStringB5cxx11Ev,@function
+_ZN5timer8toStringB5cxx11Ev:            # @_ZN5timer8toStringB5cxx11Ev
+.Lfunc_begin1:
+	.cfi_startproc
+	.cfi_personality 3, __gxx_personality_v0
+	.cfi_lsda 3, .Lexception1
+# BB#0:
+	push	r15
+.Ltmp34:
+	.cfi_def_cfa_offset 16
+	push	r14
+.Ltmp35:
+	.cfi_def_cfa_offset 24
+	push	r12
+.Ltmp36:
+	.cfi_def_cfa_offset 32
+	push	rbx
+.Ltmp37:
+	.cfi_def_cfa_offset 40
+	sub	rsp, 376
+.Ltmp38:
+	.cfi_def_cfa_offset 416
+.Ltmp39:
+	.cfi_offset rbx, -40
+.Ltmp40:
+	.cfi_offset r12, -32
+.Ltmp41:
+	.cfi_offset r14, -24
+.Ltmp42:
+	.cfi_offset r15, -16
+	mov	rbx, rsi
+	mov	r14, rdi
+	lea	rdi, [rsp]
+	mov	esi, 16
+	call	_ZNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEC1ESt13_Ios_Openmode
+	cmp	byte ptr [rbx + 32], 0
+	je	.LBB4_6
+# BB#1:
+.Ltmp10:
+	lea	rdi, [rsp]
+	mov	esi, .L.str
+	mov	edx, 20
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+.Ltmp11:
+	jmp	.LBB4_14
+.LBB4_6:
+	mov	rax, qword ptr [rbx + 8]
+	mov	rcx, qword ptr [rbx + 16]
+	mov	rsi, qword ptr [rbx + 24]
+	mov	r12, rsi
+	sub	r12, rax
+	add	r12, 1000000
+	sub	rsi, rax
+	cmovns	r12, rsi
+	sub	rcx, qword ptr [rbx]
+	sar	rsi, 63
+	add	rsi, rcx
+.Ltmp12:
+	lea	rdi, [rsp]
+	call	_ZNSo9_M_insertIlEERSoT_
+	mov	r15, rax
+.Ltmp13:
+# BB#7:                                 # %_ZNSolsEl.exit
+.Ltmp14:
+	mov	esi, .L.str.1
+	mov	edx, 1
+	mov	rdi, r15
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+.Ltmp15:
+# BB#8:                                 # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit1
+	cmp	r12, 100000
+	setl	al
+	mov	ecx, .L.str.2
+	mov	esi, .L.str.3
+	cmovl	rsi, rcx
+	movzx	edx, al
+.Ltmp16:
+	mov	rdi, r15
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+.Ltmp17:
+# BB#9:                                 # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit2
+	cmp	r12, 10000
+	setl	al
+	mov	ecx, .L.str.2
+	mov	esi, .L.str.3
+	cmovl	rsi, rcx
+	movzx	edx, al
+.Ltmp18:
+	mov	rdi, r15
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+.Ltmp19:
+# BB#10:                                # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit3
+	cmp	r12, 1000
+	setl	al
+	mov	ecx, .L.str.2
+	mov	esi, .L.str.3
+	cmovl	rsi, rcx
+	movzx	edx, al
+.Ltmp20:
+	mov	rdi, r15
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+.Ltmp21:
+# BB#11:                                # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit4
+	cmp	r12, 100
+	setl	al
+	mov	ecx, .L.str.2
+	mov	esi, .L.str.3
+	cmovl	rsi, rcx
+	movzx	edx, al
+.Ltmp22:
+	mov	rdi, r15
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+.Ltmp23:
+# BB#12:                                # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit5
+	cmp	r12, 10
+	setl	al
+	mov	ecx, .L.str.2
+	mov	esi, .L.str.3
+	cmovl	rsi, rcx
+	movzx	edx, al
+.Ltmp24:
+	mov	rdi, r15
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+.Ltmp25:
+# BB#13:                                # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit6
+.Ltmp26:
+	mov	rdi, r15
+	mov	rsi, r12
+	call	_ZNSo9_M_insertIlEERSoT_
+.Ltmp27:
+.LBB4_14:                               # %_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc.exit
+	lea	rsi, [rsp + 8]
+.Ltmp28:
+	mov	rdi, r14
+	call	_ZNKSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEE3strEv
+.Ltmp29:
+# BB#15:                                # %_ZNKSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEE3strEv.exit
+	mov	rax, qword ptr [rip + _ZTTNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEE]
+	mov	qword ptr [rsp], rax
+	mov	rcx, qword ptr [rip + _ZTTNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEE+24]
+	mov	rax, qword ptr [rax - 24]
+	mov	qword ptr [rsp + rax], rcx
+	mov	qword ptr [rsp + 8], _ZTVNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEEE+16
+	mov	rdi, qword ptr [rsp + 80]
+	lea	rax, [rsp + 96]
+	cmp	rdi, rax
+	je	.LBB4_17
+# BB#16:
+	call	_ZdlPv
+.LBB4_17:                               # %_ZNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEED1Ev.exit9
+	mov	qword ptr [rsp + 8], _ZTVSt15basic_streambufIcSt11char_traitsIcEE+16
+	lea	rdi, [rsp + 64]
+	call	_ZNSt6localeD1Ev
+	lea	rdi, [rsp + 112]
+	call	_ZNSt8ios_baseD2Ev
+	mov	rax, r14
+	add	rsp, 376
+	pop	rbx
+	pop	r12
+	pop	r14
+	pop	r15
+	ret
+.LBB4_2:
+.Ltmp30:
+	mov	rbx, rax
+	mov	rax, qword ptr [rip + _ZTTNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEE]
+	mov	qword ptr [rsp], rax
+	mov	rcx, qword ptr [rip + _ZTTNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEEE+24]
+	mov	rax, qword ptr [rax - 24]
+	mov	qword ptr [rsp + rax], rcx
+	mov	qword ptr [rsp + 8], _ZTVNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEEE+16
+	mov	rdi, qword ptr [rsp + 80]
+	lea	rax, [rsp + 96]
+	cmp	rdi, rax
+	je	.LBB4_4
+# BB#3:
+	call	_ZdlPv
+.LBB4_4:
+	mov	qword ptr [rsp + 8], _ZTVSt15basic_streambufIcSt11char_traitsIcEE+16
+	lea	rdi, [rsp + 64]
+	call	_ZNSt6localeD1Ev
+	lea	rdi, [rsp + 112]
+.Ltmp31:
+	call	_ZNSt8ios_baseD2Ev
+.Ltmp32:
+# BB#5:                                 # %_ZNSt7__cxx1119basic_ostringstreamIcSt11char_traitsIcESaIcEED1Ev.exit
+	mov	rdi, rbx
+	call	_Unwind_Resume
+.LBB4_18:
+.Ltmp33:
+	mov	rdi, rax
+	call	__clang_call_terminate
+.Lfunc_end4:
+	.size	_ZN5timer8toStringB5cxx11Ev, .Lfunc_end4-_ZN5timer8toStringB5cxx11Ev
+	.cfi_endproc
+	.section	.gcc_except_table,"a",@progbits
+	.align	4
+GCC_except_table4:
+.Lexception1:
+	.byte	255                     # @LPStart Encoding = omit
+	.byte	3                       # @TType Encoding = udata4
+	.byte	73                      # @TType base offset
+	.byte	3                       # Call site Encoding = udata4
+	.byte	65                      # Call site table length
+	.long	.Lfunc_begin1-.Lfunc_begin1 # >> Call Site 1 <<
+	.long	.Ltmp10-.Lfunc_begin1   #   Call between .Lfunc_begin1 and .Ltmp10
+	.long	0                       #     has no landing pad
+	.byte	0                       #   On action: cleanup
+	.long	.Ltmp10-.Lfunc_begin1   # >> Call Site 2 <<
+	.long	.Ltmp29-.Ltmp10         #   Call between .Ltmp10 and .Ltmp29
+	.long	.Ltmp30-.Lfunc_begin1   #     jumps to .Ltmp30
+	.byte	0                       #   On action: cleanup
+	.long	.Ltmp29-.Lfunc_begin1   # >> Call Site 3 <<
+	.long	.Ltmp31-.Ltmp29         #   Call between .Ltmp29 and .Ltmp31
+	.long	0                       #     has no landing pad
+	.byte	0                       #   On action: cleanup
+	.long	.Ltmp31-.Lfunc_begin1   # >> Call Site 4 <<
+	.long	.Ltmp32-.Ltmp31         #   Call between .Ltmp31 and .Ltmp32
+	.long	.Ltmp33-.Lfunc_begin1   #     jumps to .Ltmp33
+	.byte	1                       #   On action: 1
+	.long	.Ltmp32-.Lfunc_begin1   # >> Call Site 5 <<
+	.long	.Lfunc_end4-.Ltmp32     #   Call between .Ltmp32 and .Lfunc_end4
+	.long	0                       #     has no landing pad
+	.byte	0                       #   On action: cleanup
+	.byte	1                       # >> Action Record 1 <<
+                                        #   Catch TypeInfo 1
+	.byte	0                       #   No further actions
+                                        # >> Catch TypeInfos <<
+	.long	0                       # TypeInfo 1
+	.align	4
+
+	.section	.text.__clang_call_terminate,"axG",@progbits,__clang_call_terminate,comdat
+	.hidden	__clang_call_terminate
+	.weak	__clang_call_terminate
+	.align	16, 0x90
+	.type	__clang_call_terminate,@function
+__clang_call_terminate:                 # @__clang_call_terminate
+# BB#0:
+	push	rax
+	call	__cxa_begin_catch
+	call	_ZSt9terminatev
+.Lfunc_end5:
+	.size	__clang_call_terminate, .Lfunc_end5-__clang_call_terminate
+
+	.section	.rodata.cst8,"aM",@progbits,8
+	.align	8
+.LCPI6_0:
+	.quad	4696837146684686336     # double 1.0E+6
+	.text
+	.globl	_ZN5timer7getTimeEv
+	.align	16, 0x90
+	.type	_ZN5timer7getTimeEv,@function
+_ZN5timer7getTimeEv:                    # @_ZN5timer7getTimeEv
+	.cfi_startproc
+# BB#0:
+	mov	rax, qword ptr [rdi + 16]
+	mov	rcx, qword ptr [rdi + 24]
+	sub	rax, qword ptr [rdi]
+	sub	rcx, qword ptr [rdi + 8]
+	cvtsi2sd	xmm1, rax
+	cvtsi2sd	xmm0, rcx
+	divsd	xmm0, qword ptr [rip + .LCPI6_0]
+	addsd	xmm0, xmm1
+	ret
+.Lfunc_end6:
+	.size	_ZN5timer7getTimeEv, .Lfunc_end6-_ZN5timer7getTimeEv
+	.cfi_endproc
+
+	.globl	_ZlsRSoR5timer
+	.align	16, 0x90
+	.type	_ZlsRSoR5timer,@function
+_ZlsRSoR5timer:                         # @_ZlsRSoR5timer
+.Lfunc_begin2:
+	.cfi_startproc
+	.cfi_personality 3, __gxx_personality_v0
+	.cfi_lsda 3, .Lexception2
+# BB#0:
+	push	rbx
+.Ltmp46:
+	.cfi_def_cfa_offset 16
+	sub	rsp, 32
+.Ltmp47:
+	.cfi_def_cfa_offset 48
+.Ltmp48:
+	.cfi_offset rbx, -16
+	mov	rbx, rdi
+	lea	rdi, [rsp]
+	call	_ZN5timer8toStringB5cxx11Ev
+	mov	rsi, qword ptr [rsp]
+	mov	rdx, qword ptr [rsp + 8]
+.Ltmp43:
+	mov	rdi, rbx
+	call	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	mov	rbx, rax
+.Ltmp44:
+# BB#1:                                 # %_ZStlsIcSt11char_traitsIcESaIcEERSt13basic_ostreamIT_T0_ES7_RKNSt7__cxx1112basic_stringIS4_S5_T1_EE.exit.i
+	mov	rdi, qword ptr [rsp]
+	lea	rax, [rsp + 16]
+	cmp	rdi, rax
+	je	.LBB7_3
+# BB#2:
+	call	_ZdlPv
+.LBB7_3:                                # %_ZN5timer5printERSo.exit
+	mov	rax, rbx
+	add	rsp, 32
+	pop	rbx
+	ret
+.LBB7_4:
+.Ltmp45:
+	mov	rbx, rax
+	mov	rdi, qword ptr [rsp]
+	lea	rax, [rsp + 16]
+	cmp	rdi, rax
+	je	.LBB7_6
+# BB#5:
+	call	_ZdlPv
+.LBB7_6:                                # %_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED2Ev.exit1.i
+	mov	rdi, rbx
+	call	_Unwind_Resume
+.Lfunc_end7:
+	.size	_ZlsRSoR5timer, .Lfunc_end7-_ZlsRSoR5timer
+	.cfi_endproc
+	.section	.gcc_except_table,"a",@progbits
+	.align	4
+GCC_except_table7:
+.Lexception2:
+	.byte	255                     # @LPStart Encoding = omit
+	.byte	3                       # @TType Encoding = udata4
+	.byte	41                      # @TType base offset
+	.byte	3                       # Call site Encoding = udata4
+	.byte	39                      # Call site table length
+	.long	.Lfunc_begin2-.Lfunc_begin2 # >> Call Site 1 <<
+	.long	.Ltmp43-.Lfunc_begin2   #   Call between .Lfunc_begin2 and .Ltmp43
+	.long	0                       #     has no landing pad
+	.byte	0                       #   On action: cleanup
+	.long	.Ltmp43-.Lfunc_begin2   # >> Call Site 2 <<
+	.long	.Ltmp44-.Ltmp43         #   Call between .Ltmp43 and .Ltmp44
+	.long	.Ltmp45-.Lfunc_begin2   #     jumps to .Ltmp45
+	.byte	0                       #   On action: cleanup
+	.long	.Ltmp44-.Lfunc_begin2   # >> Call Site 3 <<
+	.long	.Lfunc_end7-.Ltmp44     #   Call between .Ltmp44 and .Lfunc_end7
+	.long	0                       #     has no landing pad
+	.byte	0                       #   On action: cleanup
+	.align	4
+
+	.section	.text.startup,"ax",@progbits
+	.align	16, 0x90
+	.type	_GLOBAL__sub_I_timer.cpp,@function
+_GLOBAL__sub_I_timer.cpp:               # @_GLOBAL__sub_I_timer.cpp
+	.cfi_startproc
+# BB#0:
+	push	rax
+.Ltmp49:
+	.cfi_def_cfa_offset 16
+	mov	edi, _ZStL8__ioinit
+	call	_ZNSt8ios_base4InitC1Ev
+	mov	edi, _ZNSt8ios_base4InitD1Ev
+	mov	esi, _ZStL8__ioinit
+	mov	edx, __dso_handle
+	pop	rax
+	jmp	__cxa_atexit            # TAILCALL
+.Lfunc_end8:
+	.size	_GLOBAL__sub_I_timer.cpp, .Lfunc_end8-_GLOBAL__sub_I_timer.cpp
+	.cfi_endproc
+
+	.type	_ZStL8__ioinit,@object  # @_ZStL8__ioinit
+	.local	_ZStL8__ioinit
+	.comm	_ZStL8__ioinit,1,1
+	.type	.L.str,@object          # @.str
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L.str:
+	.asciz	"Timer still running\n"
+	.size	.L.str, 21
+
+	.type	.L.str.1,@object        # @.str.1
+.L.str.1:
+	.asciz	"."
+	.size	.L.str.1, 2
+
+	.type	.L.str.2,@object        # @.str.2
+.L.str.2:
+	.asciz	"0"
+	.size	.L.str.2, 2
+
+	.type	.L.str.3,@object        # @.str.3
+.L.str.3:
+	.zero	1
+	.size	.L.str.3, 1
+
+	.section	.init_array,"aw",@init_array
+	.align	8
+	.quad	_GLOBAL__sub_I_timer.cpp
+
+	.globl	_ZN5timerC1ERS_
+	.type	_ZN5timerC1ERS_,@function
+_ZN5timerC1ERS_ = _ZN5timerC2ERS_
+	.ident	"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"
+	.section	".note.GNU-stack","",@progbits

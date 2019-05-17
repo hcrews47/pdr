@@ -1,3 +1,4 @@
+// Holt Crews, jhc6we, 10/16/17, timer.cpp
 // NOTE: in order to compile this system on Linux (and most Unix
 // systems) you will have to include the -lrt flag to your compiler.
 

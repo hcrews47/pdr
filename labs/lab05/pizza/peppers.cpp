@@ -1,7 +1,8 @@
+//Holt Crews
 #include "peppers.h"
 
 Peppers::Peppers() {
-    quantity=0;
+    quantity=1;
 }
 
 Peppers::Peppers(int amount) {

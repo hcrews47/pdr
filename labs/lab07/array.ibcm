@@ -1,0 +1,40 @@
+C00C 000		jmp	start	skip variables
+0005 001	x	dw	5	int x = 5
+0007 002	y	dw	7	int y = 7
+0008 003	z	dw	3	int x = 3
+0001 004	a	dw	0	int a[]
+0003 005	n	dw	0	array size
+0001 006	one	dw	1
+6000 007	subit	dw	0	subtraction to do comparison
+0000 008	max	dw	0	variable to hold max
+0000 009	addr	dw	1	keeps track of address
+3000 00A	loadit	dw 	0	loads
+0000 00B
+3005 00C	start/l	load	n	load array address
+B000 00D		nop
+D025 00E		jmpe	xit
+B000 00F		nop 		
+4005 010		nop
+B007 011		nop
+B008 012		nop
+B01A 013		nop
+300A 014		load 	loadit	form second part of comparison
+5009 015		add	addr	add addr to loadit
+5006 016		add 	one 	add one to loadit
+4019 017		store 	loadit
+401C 018		store   loadit
+0000 019	loadit	dw	0
+6008 01A	subit	dw 	0
+E01E 01B		jmpl	endl
+0000 01C	loadit	load	loadit
+4008 01D		store 	max	change max if new max is found
+3005 01E	endl	load 	n	
+6006 01F		sub 	1
+4005 020		store 	n
+3009 021		load 	addr
+5006 022		add 	one
+4009 023		store 	addr
+C00C 024		jmp	start/l	top of loop
+3008 025	xit	load 	max
+1800 026		printH
+0000 027		halt

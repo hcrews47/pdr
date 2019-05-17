@@ -76,6 +76,7 @@ int AvlTree::card_of( ) const {
 
 void AvlTree::insert( const string & x ) {
     insert( x, root );
+    num_nodes += 1;
 }
 
 /**
@@ -157,11 +158,14 @@ double AvlTree::exp_path_length( )
 */
 {
     // YOUR CODE HERE
-    return -99.0;  // stub, remove after writing your code
+  return double(int_path_length(root, 0))/double(num_nodes);  // stub, remove after writing your code
 }
 
 int AvlTree::int_path_length(AvlNode *t, int depth) {
-    return 0; // put your actual return value here when you write this function
+  if(t != NULL){
+    return (depth + int_path_length(t->left, depth+1) + int_path_length(t->right, depth+1)); // put your actual return value here when you write this function
+  }
+  return 0;
 }
 
 /**
@@ -184,8 +188,11 @@ void AvlTree::insert( const string & x, AvlNode * & t ) const {
         insert( x, t->left );
         if ( height( t->left ) - height( t->right ) == 2 ) {
             if ( x < t->left->element ) {
+	      SingleRotations += 1;
                 rotateWithLeftChild( t );
+	      
             } else {
+	      DoubleRotations += 1;
                 doubleWithLeftChild( t );
             }
         }
@@ -193,8 +200,10 @@ void AvlTree::insert( const string & x, AvlNode * & t ) const {
         insert( x, t->right );
         if ( height( t->right ) - height( t->left ) == 2 ) {
             if ( t->right->element < x ) {
+	      SingleRotations += 1;
                 rotateWithRightChild( t );
             } else {
+	      DoubleRotations += 1;
                 doubleWithRightChild( t );
             }
         }
@@ -240,8 +249,10 @@ AvlTree::find( const string & x, AvlNode *t ) const {
     while ( t != NULL )
         if ( x < t->element ) {
             t = t->left;
+	    LeftLinksFollowed += 1;
         } else if ( t->element < x ) {
             t = t->right;
+	    RightLinksFollowed += 1;
         } else
             return t;    // Match
     return NULL;   // No match

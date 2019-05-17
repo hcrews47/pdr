@@ -1,4 +1,4 @@
-// Insert your header information here
+// Holt Crews, jhc6we, 10/9/17, TreeNode.cpp
 // TreeNode.cpp:  Tree Node method implementations
 // CS 2150: Lab 5
 

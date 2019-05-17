@@ -39,6 +39,7 @@ BinarySearchTree::~BinarySearchTree( ) {
 
 void BinarySearchTree::insert( const string & x ) {
     insert( x, root );
+    num_nodes += 1;
 }
 
 /**
@@ -80,12 +81,17 @@ double BinarySearchTree::exp_path_length( )
 */
 {
     // YOUR CODE HERE
-    return -99.0;  // stub, remove after writing your code
+  
+  return double(int_path_length(root, 0))/double(num_nodes);  // stub, remove after writing your code
 }
 
 int BinarySearchTree::int_path_length(BinaryNode *t, int depth) {
     // Your code here
-    return -99; // remove after writing your code
+  if(t != NULL){
+    return (depth + int_path_length(t->left, depth+1) + int_path_length(t->right,depth+1));
+  }
+  return 0;
+// remove after writing your code
 }
 
 /**
@@ -238,8 +244,10 @@ BinaryNode * BinarySearchTree::find( const string & x, BinaryNode *t ) const {
     if ( t == NULL )
         return NULL;
     else if ( x < t->element ) {
+      LeftLinksFollowed += 1;
         return find( x, t->left );
     } else if ( t->element < x ) {
+      RightLinksFollowed += 1;
         return find( x, t->right );
     } else
         return t;    // Match

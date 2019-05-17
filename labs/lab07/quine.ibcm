@@ -1,0 +1,30 @@
+C007 000		jmp	start	skip variables
+0002 001	acount	dw	1800
+001E 002	n	dw		length of program-2
+0001 003	one	dw	1
+3000 004	loadit	dw	0000	address counter
+0014 005	ldita	dw	
+0000 006	zero	dw	0
+3000 007		load	000	
+1800 008		printH
+3001 009		load	001
+1800 00A		printH
+3002 00B	start	load	n
+6001 00C		sub 	acount
+D01D 00D		jmpe	xit
+3004 00E		load	loadit
+5001 00F		add 	acount
+4014 010		store	loadit
+3001 011		load	acount
+6005 012		sub	014
+D017 013		jmpe
+0000 014	loadit	dw	0
+1800 015		printH 	00E
+C019 016		jmp
+3006 017		load	zero
+1800 018		printH
+3001 019		load	acount
+5003 01A		add	one
+4001 01B		store	acount
+C00B 01C		jmp	start
+0000 01D	xit	halt

@@ -23,11 +23,16 @@ int main (int argc, char **argv) {
     }
     // read in two strings
     string s1, s2;
-    file >> s1;
-    file >> s2;
-    // output those strings
-    cout << s1 << endl;
-    cout << s2 << endl;
+    while(s1 != "0" && s2 != "0"){
+      file >> s1;
+      file >> s2;
+      // output those strings
+      if(s1 == "0" && s2 == "0")
+	break;
+      cout << s1 << endl;
+      cout << s2 << endl;
+    }
+   
     // string comparison done with ==, but not shown here
     // close the file before exiting
     file.close();

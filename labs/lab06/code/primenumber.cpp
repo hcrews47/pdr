@@ -27,10 +27,10 @@ int getNextPrime (unsigned int n) {
     return n; // all your primes are belong to us
 }
 
-int main() {
+/*int main() {
     int x;
     cout << "Enter number: ";
     cin >> x;
     cout << x << " is prime: " << checkprime(x) << endl;
     cout << "next higest prime: " << getNextPrime(x) << endl;
-}
+    }*/

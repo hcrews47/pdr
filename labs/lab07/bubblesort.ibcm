@@ -1,0 +1,88 @@
+C01B 000		jmp	start	skip variables
+0003 001	a	dw	3	int a = 3
+0006 002	b 	dw	6	int b = 6
+0002 003	c	dw	2 	int c = 2
+0008 004	d	dw	8	int d = 8
+0001 005	e	dw	1	int e = 1
+0005 006	n	dw	6	array size
+0001 007 	addr	dw	1	base address of array
+0000 008	temp1	dw	0	temp place holder
+0000 009	temp2	dw	0	second temp place holder
+0001 00A	one	dw	1
+0000 00B	i	dw	0	i for the looping
+0004 00C	j	dw	4	j for the looping
+3000 00D	loadit	dw		load func
+6000 00E	subit 	dw		sub func
+4000 00F	storeit dw		store func
+0004 010	four	dw	4
+0000 011				extra space
+0000 012
+0000 013
+0000 014
+0000 015
+300B 016	starti	load	i
+500A 017		add 	one
+400B 018		store 	i
+3010 019		load	4
+400C 01A		store	j
+3006 01B	start	load	n
+600B 01C		sub 	i
+D055 01D		jmpe	xit
+B000 01E		nop
+B000 01F		nop
+300C 020	startj	load	j	
+600B 021		sub 	i
+E016 022		jmpl
+D016 023		jmpe	starti	go back to i loop
+300E 024		load	subit 	A[j]
+B000 025		nop
+5007 026		add	addr
+500C 027		add 	j
+4030 028		store 	subit
+300D 029		load 	loadit
+5007 02A		add 	addr
+500C 02B 		add 	j
+600A 02C		sub 	one
+402F 02D		store 	loadit	A[j-1]
+B000 02E		nop
+0000 02F		dw	loadit	A[j-1]
+0000 030		dw	subit 	A[j]
+B000 031		nop
+E051 032		jmpl	nochg
+300D 033		load 	loadit	creating A[j] to store in temp1
+5007 034		add	addr
+500C 035		add	j
+4038 036		store	loadit
+B000 037		nop
+0000 038		dw	loadit	A[j] loaded
+4008 039		store 	temp1	store A[j] in temp1
+300D 03A		load 	loadit	creating A[j-1] to store in temp2
+5007 03B 		add 	addr
+500C 03C		add	j
+600A 03D		sub 	one
+4040 03E		store	loadit
+B000 03F		nop
+0000 040		dw	loadit	A[j-1] loaded
+4009 041		store	temp2	store A[j-1] as temp2
+300F 042		load	storeit
+5007 043		add 	addr
+500C 044		add	j
+4048 045		store 	storeit
+3009 046		load 	temp2
+B000 047 		nop
+0000 048		dw	storeit	A[j]=temp2=A[j-1]
+300F 049		load 	storeit
+5007 04A		add	addr
+500C 04B		add 	j
+600A 04C		sub 	one
+4050 04D		store	storeit
+3008 04E		load	temp1
+B000 04F		nop
+0000 050		dw	storeit	A[j-1]=temp
+300C 051	nochg	load 	j
+600A 052		sub	one
+400C 053		store	j
+C020 054		jmp	startj	go back to j loop
+3005 055	xit	load	e
+1800 056		printH
+0000 057		halt
